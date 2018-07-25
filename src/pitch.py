@@ -1,5 +1,7 @@
 """My implementation of the complicated physics of ball flight. Built
 from scratch, refs for physics to be added in writeups,"""
+
+
 class Pitch(object):
     def __init__(self, v0, xy_spin):
         """Initialize a pitch, add more params as necessary
@@ -18,8 +20,7 @@ class Pitch(object):
         self.y = [0]
         self.z = [0]
 
-
-    def _update_pos(self,t,dt):
+    def _update_pos(self, t, dt):
         """private method for updating position based on params
         dt is time since last time step"""
         x0 = self.x[-1]
@@ -38,16 +39,15 @@ class Pitch(object):
         self.y.append(y1)
         self.z.append(z1)
 
-
-    def throw(self,dt):
+    def throw(self, dt):
         """the main simulation portion of the code"""
         t = 0
         # 18.44 is distance from mound to plate in meters
         while self.x[-1] <= 18.44:
-            self._update_pos(t,dt)
+            self._update_pos(t, dt)
             t += dt
         # make trajectory a copy of the lists so reset doesn't erase results
-        trajectory = [self.x[:],self.y[:],self.z[:]]
+        trajectory = [self.x[:], self.y[:], self.z[:]]
         # reset coordinates for new run
         self.x = [0]
         self.y = [0]
