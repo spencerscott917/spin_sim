@@ -23,17 +23,17 @@ class Pitch(object):
     def _update_pos(self, t, dt):
         """private method for updating position based on params
         dt is time since last time step"""
-        x0 = self.x[-1]
-        y0 = self.y[-1]
-        z0 = self.z[-1]
+        # x0 = self.x[-1]
+        # y0 = self.y[-1]
+        # z0 = self.z[-1]
 
         # need to account for drag, doing simplest implementation first
         # need to solve gravity equation properly, currently the ball falls
         # further and further as time resolution increases. SOLN: break v0
         # into component vectors
-        x1 = x0 + self.v0*dt
-        y1 = y0
-        z1 = z0 - 0.5*9.81*t**2
+        x1 = self.x[0] + self.v0*t
+        y1 = self.y[0]
+        z1 = self.z[0] - 0.5*9.81*t**2
 
         self.x.append(x1)
         self.y.append(y1)
